@@ -1,19 +1,39 @@
 #include <bits/stdc++.h>
 
-pair<int,int> missingAndRepeating(vector<int> &arr, int n)
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
 {
-	int rept=0, mis=0;
-	map<int, int> m1;
-	for(int i=0; i < n ; i++){
-		m1[arr[i]]++;
-	}
-	for(int i=1 ; i<n+1;i++){
-		if(m1[i]>1)
-			rept=i;
-		if(m1[i]==0)
-			mis=i;
-	}
-	return make_pair(mis, rept);
+    int left = 0 , right = m-1 , top  = 0 ,bottom = n-1;
 
-	
+    while(left < right && top < bottom ){
+        int temp = mat[top][left];
+        for(int col = left+1; col <= right; col++){
+            int k = mat[top][col];
+            mat[top][col] = temp;
+            temp = k;
+        }
+        top++;
+
+        for(int row = top; row <= bottom; row++){
+            int k = mat[row][right];
+            mat[row][right] = temp;
+            temp = k;
+        }
+        right--;
+
+        for(int col = right; col >= left; col--){
+            int k = mat[bottom][col];
+            mat[bottom][col] = temp;
+            temp = k;
+        }
+        bottom--;
+
+        for (int row = bottom; row >= top; row--) {
+          int k = mat[row][left];
+          mat[row][left] = temp;
+          temp = k;
+        }
+        left++;
+
+        mat[top - 1][left - 1] = temp;
+    }
 }
