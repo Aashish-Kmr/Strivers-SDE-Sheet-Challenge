@@ -37,7 +37,9 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "files.associations": {
     "unordered_map": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "vector": "cpp",
+    "iosfwd": "cpp"
   },
   "C_Cpp_Runner.msvcWarnings": [
     "/W4",
